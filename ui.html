@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADADADAD</title>
+</head>
+<body>
+    <h1>DADADADA</h1>
+    <button id="fetchWithoutCors">Fetch Without CORS</button>
+    <button id="fetchWithCors">Fetch With CORS</button>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('fetchWithoutCors').addEventListener('click', () => {
+            fetch('http://localhost:7000/api/hello')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').innerText = JSON.stringify(data);
+                })
+                .catch(error => {
+                    document.getElementById('response').innerText = 'Error: ' + error;
+                });
+        });
+
+        document.getElementById('fetchWithCors').addEventListener('click', () => {
+            fetch('http://localhost:3000/api/hello', {
+                mode: 'cors', 
+
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').innerText = JSON.stringify(data);
+                })
+                .catch(error => {
+                    document.getElementById('response').innerText = 'Error: ' + error;
+                });
+        });
+    </script>
+</body>
+</html>
